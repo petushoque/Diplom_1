@@ -78,4 +78,14 @@ public class BurgerTest {
         Assert.assertEquals(expectedBurgerSize, actualBurgerSize);
     }
 
+    @Test
+    public void moveIngredientTest() {
+        Burger burger = new Burger();
+        burger.ingredients.add(firstIngredient);
+        burger.ingredients.add(secondIngredient);
+        burger.ingredients.add(thirdIngredient);
+        burger.moveIngredient(0, 2);
+        Assert.assertEquals(firstIngredient, burger.ingredients.get(2));
+    }
+
 }
