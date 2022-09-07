@@ -52,4 +52,30 @@ public class BurgerTest {
         Assert.assertTrue(burger.ingredients.contains(secondIngredient));
     }
 
+    @Test
+    public void removeOneIngredientTest() {
+        Burger burger = new Burger();
+        burger.ingredients.add(firstIngredient);
+        burger.ingredients.add(secondIngredient);
+        burger.removeIngredient(1);
+        int actualBurgerSize = burger.ingredients.size();
+        int expectedBurgerSize = 1;
+        Assert.assertFalse(burger.ingredients.contains(secondIngredient));
+        Assert.assertEquals(expectedBurgerSize, actualBurgerSize);
+    }
+
+    @Test
+    public void removeTwoIngredientsTest() {
+        Burger burger = new Burger();
+        burger.ingredients.add(firstIngredient);
+        burger.ingredients.add(secondIngredient);
+        burger.removeIngredient(0);
+        burger.removeIngredient(0);
+        int actualBurgerSize = burger.ingredients.size();
+        int expectedBurgerSize = 0;
+        Assert.assertFalse(burger.ingredients.contains(firstIngredient));
+        Assert.assertFalse(burger.ingredients.contains(secondIngredient));
+        Assert.assertEquals(expectedBurgerSize, actualBurgerSize);
+    }
+
 }
