@@ -97,7 +97,36 @@ public class BurgerTest {
         Mockito.when(firstIngredient.getPrice()).thenReturn(99.99f);
         float actualBurgerPrice = burger.getPrice();
         float expectedBurgerPrice = 199.97f;
-        Assert.assertEquals(actualBurgerPrice, expectedBurgerPrice, 0);
+        Assert.assertEquals(expectedBurgerPrice, actualBurgerPrice, 0);
     }
 
+    @Test
+    public void BurgerGetReceiptTest() {
+        Burger burger = new Burger();
+        burger.setBuns(bun);
+        burger.ingredients.add(firstIngredient);
+        burger.ingredients.add(secondIngredient);
+        burger.ingredients.add(thirdIngredient);
+        Mockito.when(bun.getName()).thenReturn("Чесночная булочка");
+        Mockito.when(bun.getPrice()).thenReturn(79f);
+        Mockito.when(firstIngredient.getType()).thenReturn(IngredientType.FILLING);
+        Mockito.when(firstIngredient.getName()).thenReturn("Салями");
+        Mockito.when(firstIngredient.getPrice()).thenReturn(119f);
+        Mockito.when(secondIngredient.getType()).thenReturn(IngredientType.FILLING);
+        Mockito.when(secondIngredient.getName()).thenReturn("Сыр");
+        Mockito.when(secondIngredient.getPrice()).thenReturn(109f);
+        Mockito.when(thirdIngredient.getType()).thenReturn(IngredientType.SAUCE);
+        Mockito.when(thirdIngredient.getName()).thenReturn("Кетчунез");
+        Mockito.when(thirdIngredient.getPrice()).thenReturn(9f);
+        String actualReceipt = burger.getReceipt();
+        String expectedReceipt =
+                        "(==== Чесночная булочка ====)\r\n" +
+                        "= filling Салями =\r\n" +
+                        "= filling Сыр =\r\n" +
+                        "= sauce Кетчунез =\r\n" +
+                        "(==== Чесночная булочка ====)\r\n" +
+                        "\r\n" +
+                        "Price: 395.000000\r\n";
+        Assert.assertEquals(expectedReceipt, actualReceipt);
+    }
 }
