@@ -53,7 +53,7 @@ public class BurgerTest {
     }
 
     @Test
-    public void removeOneIngredientTest() {
+    public void burgerRemoveOneIngredientTest() {
         Burger burger = new Burger();
         burger.ingredients.add(firstIngredient);
         burger.ingredients.add(secondIngredient);
@@ -65,7 +65,7 @@ public class BurgerTest {
     }
 
     @Test
-    public void removeTwoIngredientsTest() {
+    public void burgerRemoveTwoIngredientsTest() {
         Burger burger = new Burger();
         burger.ingredients.add(firstIngredient);
         burger.ingredients.add(secondIngredient);
@@ -79,13 +79,25 @@ public class BurgerTest {
     }
 
     @Test
-    public void moveIngredientTest() {
+    public void burgerMoveIngredientTest() {
         Burger burger = new Burger();
         burger.ingredients.add(firstIngredient);
         burger.ingredients.add(secondIngredient);
         burger.ingredients.add(thirdIngredient);
         burger.moveIngredient(0, 2);
         Assert.assertEquals(firstIngredient, burger.ingredients.get(2));
+    }
+
+    @Test
+    public void burgerGetPriceTest() {
+        Burger burger = new Burger();
+        burger.setBuns(bun);
+        burger.addIngredient(firstIngredient);
+        Mockito.when(bun.getPrice()).thenReturn(49.99f);
+        Mockito.when(firstIngredient.getPrice()).thenReturn(99.99f);
+        float actualBurgerPrice = burger.getPrice();
+        float expectedBurgerPrice = 199.97f;
+        Assert.assertEquals(actualBurgerPrice, expectedBurgerPrice, 0);
     }
 
 }
